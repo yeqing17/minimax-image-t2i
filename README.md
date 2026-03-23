@@ -18,13 +18,15 @@ git clone https://github.com/yeqing17/minimax-image-t2i.git
 ```
 
 **Method 2: Install from .skill file**
+
+Download from [Releases](https://github.com/yeqing17/minimax-image-t2i/releases), then:
 ```bash
 cp minimax-image-t2i.skill /root/.openclaw/skills/
 ```
 
 ### Configuration
 
-Set your MiniMax API key:
+Set your MiniMax API key (Linux/macOS/Windows Git Bash):
 ```bash
 export MINIMAX_API_KEY=your_api_key_here
 ```
@@ -63,13 +65,15 @@ git clone https://github.com/yeqing17/minimax-image-t2i.git
 ```
 
 **方式 2：通过 .skill 文件安装**
+
+从 [Releases](https://github.com/yeqing17/minimax-image-t2i/releases) 下载，然后：
 ```bash
 cp minimax-image-t2i.skill /root/.openclaw/skills/
 ```
 
 ### 配置
 
-设置 MiniMax API 密钥：
+设置 MiniMax API 密钥 (Linux/macOS/Windows Git Bash)：
 ```bash
 export MINIMAX_API_KEY=your_api_key_here
 ```
