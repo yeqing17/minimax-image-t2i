@@ -31,6 +31,11 @@ Set your MiniMax API key (Linux/macOS/Windows Git Bash):
 export MINIMAX_API_KEY=your_api_key_here
 ```
 
+Optional: Customize output directory (default: `~/minimax-images`)
+```bash
+export MINIMAX_OUTPUT_DIR="/path/to/your/output"
+```
+
 ### Usage
 
 Once installed, the skill will automatically trigger when you ask to generate images.
@@ -76,6 +81,11 @@ cp minimax-image-t2i.skill /root/.openclaw/skills/
 设置 MiniMax API 密钥 (Linux/macOS/Windows Git Bash)：
 ```bash
 export MINIMAX_API_KEY=your_api_key_here
+```
+
+可选：自定义输出目录（默认：`~/minimax-images`）
+```bash
+export MINIMAX_OUTPUT_DIR="/path/to/your/output"
 ```
 
 ### 使用
