@@ -13,7 +13,10 @@ import requests
 
 API_KEY = os.environ.get("MINIMAX_API_KEY")
 BASE_URL = "https://api.minimaxi.com"
-MINIMAX_OUTPUT_DIR = "/root/.openclaw/workspace/minimax-images-t2i"
+
+# Output directory: support env var override, default to ~/minimax-images
+DEFAULT_OUTPUT_DIR = os.path.expanduser("~/minimax-images")
+MINIMAX_OUTPUT_DIR = os.environ.get("MINIMAX_OUTPUT_DIR", DEFAULT_OUTPUT_DIR)
 
 # Ensure output directory exists
 os.makedirs(MINIMAX_OUTPUT_DIR, exist_ok=True)
@@ -49,7 +52,7 @@ def expand_prompt(prompt):
             {"role": "system", "content": system_prompt},
             {"role": "user", "content": f"请扩写这个图片描述：{prompt}"}
         ],
-        "max_tokens": 500,
+        "max_tokens": 1024,
         "temperature": 0.7
     }
     
@@ -59,11 +62,14 @@ def expand_prompt(prompt):
         response = requests.post(url, headers=headers, json=payload)
         if response.status_code == 200:
             result = response.json()
-            expanded = result.get("choices", [{}])[0].get("message", {}).get("content", "").strip()
-            if expanded:
-                print(f"✅ 提示词扩写完成")
-                print(f"📝 扩写后：{expanded}")
-                return expanded
+            choices = result.get("choices") or []
+            if choices:
+                expanded = choices[0].get("message", {}).get("content", "").strip()
+                if expanded:
+                    print(f"✅ 提示词扩写完成")
+                    print(f"📝 扩写后：{expanded}")
+                    return expanded
+            print("Warning: Expansion returned empty content, using original prompt")
     except Exception as e:
         print(f"Warning: Prompt expansion failed: {e}")
     
